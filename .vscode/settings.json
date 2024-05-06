@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "bsp_mem_map.h": "c",
+        "psp_api.h": "c",
+        "psp_csrs_eh1.h": "c",
+        "psp_attributes.h": "c",
+        "psp_memory_utils.h": "c",
+        "psp_pragmas.h": "c",
+        "bsp_external_interrupts.h": "c"
+    }
+}

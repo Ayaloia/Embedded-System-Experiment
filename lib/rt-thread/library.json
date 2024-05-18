@@ -1,0 +1,17 @@
+{
+    "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/schema/library.json",
+    "name": "RT-Thread Nano",
+    "version": "3.1.1?",
+    "build": {
+        "includeDir": ".",
+        "srcDir": ".",
+        "flags": [
+            "-I bsp",
+            "-I bsp/api_inc",
+            "-I components/finsh",
+            "-I include",
+            "-I libcpu",
+            "-eentry"
+        ]
+    }
+}

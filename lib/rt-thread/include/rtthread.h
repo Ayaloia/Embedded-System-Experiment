@@ -22,6 +22,7 @@
 #include <rtdebug.h>
 #include <rtdef.h>
 #include <rtservice.h>
+#include <bsp_printf.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -451,8 +452,8 @@ void rt_components_board_init(void);
  * general kernel service
  */
 #ifndef RT_USING_CONSOLE
-#define rt_kprintf(...)
-#define rt_kputs(str)
+#define rt_kprintf(...) printfNexys(__VA_ARGS__)
+#define rt_kputs(str) printfNexys(str)
 #else
 void rt_kprintf(const char *fmt, ...);
 void rt_kputs(const char *str);

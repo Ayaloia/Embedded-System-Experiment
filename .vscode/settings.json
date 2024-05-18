@@ -6,6 +6,12 @@
         "psp_attributes.h": "c",
         "psp_memory_utils.h": "c",
         "psp_pragmas.h": "c",
-        "bsp_external_interrupts.h": "c"
+        "bsp_external_interrupts.h": "c",
+        "rtthread.h": "c",
+        "demo_platform_al.h": "c",
+        "psp_macros.h": "c",
+        "type_traits": "c",
+        "cpuport.h": "c",
+        "rthw.h": "c"
     }
 }

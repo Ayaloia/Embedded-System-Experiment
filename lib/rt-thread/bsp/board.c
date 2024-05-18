@@ -7,36 +7,16 @@
  * Date           Author       Notes
  * 2017-07-24     Tanek        the first version
  * 2018-11-12     Ernest Chen  modify copyright
+ * 2024-05-17     Aldlss       modify for nexysA7
  */
- 
+
 #include <stdint.h>
 #include <rthw.h>
 #include <rtthread.h>
 #include "psp_api.h"
 #include "bsp_printf.h"
 #include "bsp_timer.h"
-#include "bsp_external_interrupts.h"
-#include "demo_platform_al.h"
-
-#define SegEn_ADDR 0x80001038
-#define SegDig_ADDR 0x8000103C
-
-#define GPIO_SWs 0x80001400
-#define GPIO_LEDs 0x80001404
-#define GPIO_INOUT 0x80001408
-#define RGPIO_INTE 0x8000140C
-#define RGPIO_PTRIG 0x80001410
-#define RGPIO_CTRL 0x80001418
-#define RGPIO_INTS 0x8000141C
-
-#define RPTC_CNTR 0x80001200
-#define RPTC_HRC 0x80001204
-#define RPTC_LRC 0x80001208
-#define RPTC_CTRL 0x8000120c
-
-#define Select_INT 0x80001018
-
-#define M_MSEC_TO_CYCLES(duration) (duration * (D_CLOCK_RATE / D_PSP_MSEC))
+#include "board.h"
 
 extern int printUartPutchar(char ch);
 void SW_handler();
@@ -54,8 +34,6 @@ RT_WEAK void *rt_heap_end_get(void)
     return rt_heap + RT_HEAP_SIZE;
 }
 #endif
-
-int countttt = 0;
 
 void SysTick_Handler(void)
 {
@@ -82,15 +60,13 @@ void SysTick_Handler(void)
 void SystemCoreClockUpdate(void)
 {
     /* INITIALIZE THE INTERRUPT SYSTEM */
-    // u32_t no;
-    // pspInterruptsDisable(&no);
     pspDisableInterruptNumberMachineLevel(D_PSP_INTERRUPTS_MACHINE_TIMER);
     pspInterruptsSetVectorTableAddress(&M_PSP_VECT_TABLE);
 
     // /* register timer interrupt handler */
     pspRegisterInterruptHandler(SW_handler, E_MACHINE_TIMER_CAUSE);
-    // pspRegisterExceptionHandler(SysTick_Handler, E_MACHINE_TIMER_CAUSE);
 
+    // reffer to https://blog.csdn.net/ty1121466568/article/details/120455709#2.4%C2%A0%E6%97%B6%E9%92%9F%E8%8A%82%E6%8B%8D%E7%9A%84%E9%85%8D%E7%BD%AE
     pspTimerCounterSetupAndRun(E_MACHINE_TIMER, M_MSEC_TO_CYCLES(10000));
 
     /* ENABLE INTERRUPTS */

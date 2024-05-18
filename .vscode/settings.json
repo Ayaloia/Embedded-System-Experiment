@@ -12,6 +12,7 @@
         "psp_macros.h": "c",
         "type_traits": "c",
         "cpuport.h": "c",
-        "rthw.h": "c"
+        "rthw.h": "c",
+        "bsp_printf.h": "c"
     }
 }
